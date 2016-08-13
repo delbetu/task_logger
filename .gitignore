@@ -1,0 +1,17 @@
+.ruby-gemset
+/.bundle
+/log/*
+!/log/.keep
+/tmp
+.DS_Store
+coverage
+config/database.yml
+.byebug_history
+.env
+.envrc
+*.un~
+*.swp
+*.swo
+tags
+.ackrc
+.ctags
