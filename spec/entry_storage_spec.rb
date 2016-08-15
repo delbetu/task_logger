@@ -1,9 +1,13 @@
 require 'spec_helper'
 require 'entry_storage'
 
-describe EntryStorage, '#create' do
-  it 'creates and stores new Entry and returns the new id' do
-    valid_params = {
+describe EntryStorage do
+  before(:each) do
+    EntryStorage.clean_storage
+  end
+
+  let(:valid_params) do
+    {
       date: Date.today,
       start_time: Time.now,
       end_time: Time.now + 3.hours,
@@ -11,9 +15,26 @@ describe EntryStorage, '#create' do
       category: 'Analysis',
       description: 'Work on domain model'
     }
+  end
 
-    result = EntryStorage.create(valid_params)
+  describe '#create' do
+    it 'creates and stores new Entry and returns the new id' do
+      result = EntryStorage.create(valid_params)
 
-    expect(result.id).not_to be_nil
+      expect(result.id).not_to be_nil
+    end
+  end
+
+  describe '#search' do
+    it 'returns entries which have given value and attribute' do
+      returned = EntryStorage.create(valid_params)
+      entry_for_tomorrow = valid_params.merge(date: Date.today + 1.day)
+      EntryStorage.create(entry_for_tomorrow)
+
+      result = EntryStorage.search(date: Date.today)
+
+      expect(result.count).to eq(1)
+      expect(result).to include(returned)
+    end
   end
 end

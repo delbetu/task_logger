@@ -9,6 +9,17 @@ class EntryStorage
     entry
   end
 
+  def self.search(condition)
+    attribute = condition.keys[0]
+    value = condition[attribute]
+    @@entries.select { |entry| entry.send(attribute) == value }
+  end
+
+  #TODO: This is only for testing purpose. Search another solution for this
+  def self.clean_storage
+    @@entries = []
+  end
+
   private
 
   def self.next_id
