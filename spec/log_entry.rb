@@ -1,10 +1,16 @@
 require 'logger'
-Entry = Struct.new(:id, :date, :startime, :endtime,
-                   :project, :category, :description)
 
-describe Logger, '#log' do
-  it 'returns new log entry with its id and passed attributes' do
-    params = {
+def create_entry_storage_mock
+  class_double(
+    'EntryStorage', {
+      create: nil
+    }).as_stubbed_const()
+end
+
+describe Logger, '#create_entry' do
+  let!(:entry_storage_mock) { create_entry_storage_mock }
+  let(:valid_params) do
+    {
       date: Date.today,
       startime: Time.now,
       endtime: Time.now + 3.hours,
@@ -12,11 +18,19 @@ describe Logger, '#log' do
       category: 'Analysis',
       description: 'Work on domain model'
     }
-    result = Logger.create_entry(params)
+  end
+
+  it 'returns new log entry with its id and passed attributes' do
+    result = Logger.create_entry(valid_params)
     expect(result.id).not_to be_nil
-    params.keys.each do |key|
-      expect(result.send(key)).to eq(params[key])
+    valid_params.keys.each do |key|
+      expect(result.send(key)).to eq(valid_params[key])
     end
+  end
+
+  it 'stores info in entry storage' do
+    Logger.create_entry(valid_params)
+    expect(entry_storage_mock).to have_received(:create).with(valid_params)
   end
 
   context 'when no required params are given' do

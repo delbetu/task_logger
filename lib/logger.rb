@@ -1,8 +1,11 @@
+require 'data_structures'
+
 class Logger
   class ValidationError < RuntimeError; end
 
   def self.create_entry(params)
     validate_params(params)
+    EntryStorage.create(params)
     Entry.new(1, params[:date], params[:startime], params[:endtime],
               params[:project], params[:category], params[:description])
   end
