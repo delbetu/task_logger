@@ -9,6 +9,12 @@ class Logger
     EntryStorage.create(params)
   end
 
+  def self.list_entries_for_today
+    EntryStorage.search(date: Date.today)
+  end
+
+  private
+
   def self.validate_params(params)
     raise ValidationError.new('Date is required') unless params[:date].present?
   end
