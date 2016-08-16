@@ -12,8 +12,7 @@ describe Logger do
     let(:valid_params) do
       {
         date: Date.today,
-        start_time: Time.now,
-        end_time: Time.now + 3.hours,
+        duration: 3.hours,
         project: 'Task logger',
         category: 'Analysis',
         description: 'Work on domain model'
