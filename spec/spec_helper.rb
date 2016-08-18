@@ -1,6 +1,9 @@
 require 'active_support/core_ext/object'
 require 'byebug'
 
+require 'dotenv'
+Dotenv.load
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

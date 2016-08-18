@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://minutedock.com/api/v1/projects.json?api_key=<MINUTE DOCK API KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 18 Aug 2016 03:03:34 GMT
+      Etag:
+      - W/"06d327f2f535bd9c3fdefe29e8c11fab"
+      Server:
+      - nginx/1.1.19
+      Status:
+      - '200'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.11
+      X-Request-Id:
+      - 2f3caad6-cc8c-47b5-aadd-d409ce600a35
+      X-Runtime:
+      - '0.068965'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '6961'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"id":15153,"contact_id":227025,"name":"ConnectedHealth","short_code":"hccc","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15154,"contact_id":227041,"name":"Red
+        Stamp Legacy","short_code":"rslegacy","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15155,"contact_id":227052,"name":"Viva
+        La Card","short_code":"viva_la_card","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15156,"contact_id":227038,"name":"IAT","short_code":"iat","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15157,"contact_id":227038,"name":"Driving
+        Loyalty","short_code":"driving_loyalty","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15158,"contact_id":227038,"name":"Supernaut","short_code":"supernaut","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15159,"contact_id":227050,"name":"TrackIF","short_code":"trackif","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15160,"contact_id":227037,"name":"Primacare","short_code":"primacare","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15342,"contact_id":227038,"name":"Cool
+        Schedules","short_code":"cool","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":15343,"contact_id":227047,"name":"Time
+        Tracker","short_code":"tt","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":16911,"contact_id":241693,"name":"Automotive","short_code":"automotive","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":17845,"contact_id":227041,"name":"RedStamp
+        Reboot","short_code":"rsreboot","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":18813,"contact_id":257023,"name":"Kidizen","short_code":"kidizen","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":19663,"contact_id":260374,"name":"Greycork","short_code":"greycork","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":21488,"contact_id":278063,"name":"Cohere","short_code":"co","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":21798,"contact_id":281043,"name":"SurveyVitals","short_code":"sv","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22218,"contact_id":292048,"name":"Wischen","short_code":"w","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22368,"contact_id":293356,"name":"TheBigKnow","short_code":"thebigknow","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22369,"contact_id":293356,"name":"Laureate","short_code":"laureate","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22851,"contact_id":227041,"name":"Underwood
+        Frontdoor","short_code":"uf","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22852,"contact_id":227041,"name":"Underwood
+        Backend","short_code":"ub","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22853,"contact_id":227041,"name":"Underwood
+        QA","short_code":"uqa","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":22854,"contact_id":227041,"name":"Village","short_code":"village","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":23379,"contact_id":298580,"name":"GivCuz","short_code":"givcuz","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":25704,"contact_id":325176,"name":"Naiku","short_code":"nai","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":27298,"contact_id":293356,"name":"Studio
+        E","short_code":"studioe","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":27299,"contact_id":293356,"name":"Les
+        Roches","short_code":"lesroches","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":28997,"contact_id":227047,"name":"Hire","short_code":"hire","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":28998,"contact_id":227047,"name":"Tarmac
+        website","short_code":"tarmacwebsite","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":32883,"contact_id":293356,"name":"Mayo
+        IOS","short_code":"mayoios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":34801,"contact_id":293356,"name":"Digital
+        Resource Center","short_code":"drc","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35240,"contact_id":408198,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35241,"contact_id":408198,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35612,"contact_id":293356,"name":"Dialogue","short_code":"dialogue","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37565,"contact_id":391600,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37566,"contact_id":391600,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37615,"contact_id":442214,"name":"PRIMROSE","short_code":"primrose","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":38503,"contact_id":522171,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":40890,"contact_id":472629,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":41469,"contact_id":472629,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":46328,"contact_id":227047,"name":"Refer","short_code":"refer","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":49780,"contact_id":227047,"name":"New
+        Clients ","short_code":"new_clients","pinned":false,"hidden":false,"description":"","default_rate_dollars":"0.00","active":true},{"id":58565,"contact_id":522171,"name":"business","short_code":"business","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true}]'
+    http_version: 
+  recorded_at: Thu, 18 Aug 2016 03:03:35 GMT
+recorded_with: VCR 3.0.3
