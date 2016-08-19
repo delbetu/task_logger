@@ -10,5 +10,7 @@ describe MinuteDockProxy do
         expect(response.values).not_to be_empty
       end
     end
+
+    it 'raise error with invalid credentials'
   end
 end
