@@ -47,13 +47,31 @@ describe Logger do
   end
 
   describe '#list_projects' do
-    it 'returns projects from minutedoc api' do
+    it 'fetch, returns and store projects from minutedoc api' do
       fake_minutedock_proxy =
         class_double('MinuteDockProxy',
                      list_projects: { '98' => 'Project 1' })
         .as_stubbed_const
         result = Logger.list_projects
         expect(result['98']).to eq('Project 1')
+        expect(Logger.class_variable_get(:@@projects)).to eq({ '98' => 'Project 1' })
+    end
+  end
+
+  describe '#select_project' do
+    before do
+      Logger.class_variable_set(:@@projects, { '98' => 'Project 1' })
+    end
+
+    it 'raise execption if passed code is not in project list' do
+      expect {
+        Logger.select_project('100')
+      }.to raise_error(Logger::ProjectNotFoundError)
+    end
+
+    it 'saves in memory the selected project' do
+      Logger.select_project('98')
+      expect(Logger.class_variable_get(:@@selected_project)).to eq('98')
     end
   end
 end
