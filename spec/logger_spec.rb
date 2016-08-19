@@ -45,4 +45,15 @@ describe Logger do
         with(date: Date.today)
     end
   end
+
+  describe '#list_projects' do
+    it 'returns projects from minutedoc api' do
+      fake_minutedock_proxy =
+        class_double('MinuteDockProxy',
+                     list_projects: { '98' => 'Project 1' })
+        .as_stubbed_const
+        result = Logger.list_projects
+        expect(result['98']).to eq('Project 1')
+    end
+  end
 end

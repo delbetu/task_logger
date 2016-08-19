@@ -1,5 +1,6 @@
 require 'data_structures'
 require 'entry_storage'
+require 'minute_dock_proxy'
 
 class Logger
   class ValidationError < RuntimeError; end
@@ -11,6 +12,10 @@ class Logger
 
   def self.list_entries_for_today
     EntryStorage.search(date: Date.today)
+  end
+
+  def self.list_projects
+    MinuteDockProxy.list_projects
   end
 
   private
