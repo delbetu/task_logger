@@ -2,8 +2,12 @@ require 'spec_helper'
 require 'entry_storage'
 
 describe EntryStorage do
+  after(:each) do
+    system('rm spec/db/entries.pstore')
+  end
+
   before(:each) do
-    EntryStorage.clean_storage
+    stub_const('EntryFileStore::FILE_PATH', 'spec/db/entries.pstore')
   end
 
   let(:valid_params) do

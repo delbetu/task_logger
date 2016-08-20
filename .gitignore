@@ -15,3 +15,4 @@ config/database.yml
 tags
 .ackrc
 .ctags
+db
