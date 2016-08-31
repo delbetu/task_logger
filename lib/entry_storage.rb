@@ -1,4 +1,3 @@
-require 'data_structures'
 require 'yaml/store'
 
 class EntryStorage

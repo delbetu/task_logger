@@ -1,8 +1,6 @@
-require 'active_support/core_ext/object'
 require 'byebug'
+require_relative '../load_environment'
 
-require 'dotenv'
-Dotenv.load
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
