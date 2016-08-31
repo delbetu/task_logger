@@ -1,4 +1,4 @@
-require 'logger'
+require 'entry_logger'
 
 def create_entry_storage_mock
   class_double(
@@ -7,7 +7,7 @@ def create_entry_storage_mock
     }).as_stubbed_const
 end
 
-describe Logger do
+describe EntryLogger do
   describe '#create_entry' do
     let(:valid_params) do
       {
@@ -21,7 +21,7 @@ describe Logger do
 
     it 'stores info in entry storage' do
       entry_storage_mock = create_entry_storage_mock
-      result = Logger.create_entry(valid_params)
+      result = EntryLogger.create_entry(valid_params)
       expect(entry_storage_mock).to have_received(:create).with(valid_params)
       expect(result.id).not_to be_nil
     end
@@ -30,8 +30,8 @@ describe Logger do
       it 'raises an error' do
         entry_storage_mock = create_entry_storage_mock
         expect {
-          Logger.create_entry({})
-        }.to raise_error(Logger::ValidationError)
+          EntryLogger.create_entry({})
+        }.to raise_error(EntryLogger::ValidationError)
       end
     end
   end
@@ -40,7 +40,7 @@ describe Logger do
     it 'returns entries for today' do
       entry_storage_mock =
         class_double('EntryStorage', search: [1, 2]).as_stubbed_const
-      Logger.list_entries_for_today
+      EntryLogger.list_entries_for_today
       expect(entry_storage_mock).to have_received(:search).
         with(date: Date.today)
     end
@@ -52,26 +52,26 @@ describe Logger do
         class_double('MinuteDockProxy',
                      list_projects: { '98' => 'Project 1' })
         .as_stubbed_const
-        result = Logger.list_projects
+        result = EntryLogger.list_projects
         expect(result['98']).to eq('Project 1')
-        expect(Logger.class_variable_get(:@@projects)).to eq({ '98' => 'Project 1' })
+        expect(EntryLogger.class_variable_get(:@@projects)).to eq({ '98' => 'Project 1' })
     end
   end
 
   describe '#select_project' do
     before do
-      Logger.class_variable_set(:@@projects, { '98' => 'Project 1' })
+      EntryLogger.class_variable_set(:@@projects, { '98' => 'Project 1' })
     end
 
     it 'raise execption if passed code is not in project list' do
       expect {
-        Logger.select_project('100')
-      }.to raise_error(Logger::ProjectNotFoundError)
+        EntryLogger.select_project('100')
+      }.to raise_error(EntryLogger::ProjectNotFoundError)
     end
 
     it 'saves in memory the selected project' do
-      Logger.select_project('98')
-      expect(Logger.class_variable_get(:@@selected_project)).to eq('98')
+      EntryLogger.select_project('98')
+      expect(EntryLogger.class_variable_get(:@@selected_project)).to eq('98')
     end
   end
 end

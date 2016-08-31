@@ -1,8 +1,4 @@
-require 'data_structures'
-require 'entry_storage'
-require 'minute_dock_proxy'
-
-class Logger
+class EntryLogger
   class ValidationError < RuntimeError; end
   class ProjectNotFoundError < RuntimeError; end
 
