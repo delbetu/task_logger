@@ -74,4 +74,40 @@ describe EntryLogger do
       expect(EntryLogger.class_variable_get(:@@selected_project)).to eq('98')
     end
   end
+
+  describe '#report_pending_to_minutedock' do
+    context 'when there is a non reported entry' do
+      let(:non_reported_entry) do
+        Entry.new({
+          id: 1,
+          date: Date.today,
+          duration: 3.hours,
+          project: 'Task logger',
+          category: 'Analysis',
+          description: 'Work on domain model',
+          minutedock_reported: false
+        })
+      end
+      let!(:entry_storage_mock) do
+        entry_storage_mock = class_double('EntryStorage').as_stubbed_const
+        allow(entry_storage_mock).to receive(:list_pending).with(:minutedock).and_return([ non_reported_entry ])
+        allow(entry_storage_mock).to receive(:update).with(non_reported_entry, minutedock_reported: true)
+        entry_storage_mock
+      end
+      let!(:minutedock_proxy_mock) do
+        minutedock_proxy_mock = class_double('MinuteDockProxy').as_stubbed_const
+        allow(minutedock_proxy_mock).to receive(:report_entry).with(non_reported_entry)
+        minutedock_proxy_mock
+      end
+
+      it 'marks entry as reported and reports to minutedock' do
+        EntryLogger.report_pending_to_minutedock
+
+        expect(entry_storage_mock).to have_received(:list_pending).with(:minutedock)
+        expect(entry_storage_mock).to have_received(:update).with(non_reported_entry, minutedock_reported: true)
+        expect(minutedock_proxy_mock).to have_received(:report_entry).with(non_reported_entry)
+      end
+    end
+    it 'manage exception when minutedock service fails'
+  end
 end

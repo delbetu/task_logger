@@ -23,6 +23,14 @@ class EntryLogger
     end
   end
 
+  def self.report_pending_to_minutedock
+    pending_entries = EntryStorage.list_pending(:minutedock)
+    pending_entries.each do |entry|
+      MinuteDockProxy.report_entry(entry)
+      EntryStorage.update(entry, minutedock_reported: true)
+    end
+  end
+
   private
 
   def self.validate_params(params)

@@ -2,11 +2,8 @@ require 'spec_helper'
 require 'entry_storage'
 
 describe EntryStorage do
-  after(:each) do
-    system('rm spec/db/entries.pstore')
-  end
-
   before(:each) do
+    system('rm -f spec/db/entries.pstore')
     stub_const('EntryFileStore::FILE_PATH', 'spec/db/entries.pstore')
   end
 
@@ -38,6 +35,42 @@ describe EntryStorage do
 
       expect(result.count).to eq(1)
       expect(result).to include(returned)
+    end
+  end
+
+  describe '#list_pending' do
+    it 'returns the entries which were not sent to the service in question' do
+      reported = EntryStorage.create(valid_params.dup.merge(minutedock_reported: true))
+      non_reported = EntryStorage.create(valid_params)
+
+      result = EntryStorage.list_pending(:minutedock)
+
+      expect(result).to include(non_reported)
+      expect(result).not_to include(reported)
+    end
+    it 'check params is included in existing services' do
+      expect do
+        EntryStorage.list_pending(:non_existing_service)
+      end.to raise_error(RuntimeError)
+    end
+  end
+
+  describe '#update' do
+    it 'update the values given by param' do
+      existing_entry = EntryStorage.create(valid_params)
+      tomorrow = Date.tomorrow
+
+      EntryStorage.update(existing_entry, date: tomorrow)
+
+      expect(EntryStorage.find(existing_entry.id).date).to eq(tomorrow)
+    end
+  end
+
+  describe '#find' do
+    it 'raises EntryNotFoundError when ecntry not exists yet' do
+      expect do
+        EntryStorage.find(111)
+      end.to raise_error(EntryStorage::EntryNotFoundError)
     end
   end
 end
