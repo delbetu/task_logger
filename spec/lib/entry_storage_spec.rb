@@ -12,6 +12,7 @@ describe EntryStorage do
       date: Date.today,
       duration: 3.hours,
       project: 'Task logger',
+      project_id: 1,
       category: 'Analysis',
       description: 'Work on domain model'
     }
