@@ -14,6 +14,14 @@ class MinuteDockProxy
     end.inject(:merge)
   end
 
+  def self.list_categories
+    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
+    response = get('/tasks.json', query: { api_key: api_key })
+    JSON.parse(response.body).map do |taks_category|
+      { taks_category['id'] => taks_category['name'] }
+    end.inject(:merge)
+  end
+
   def self.report_entry(entry)
     api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
     user_id = ENV.fetch('MINUTE_DOCK_USER_ID')
