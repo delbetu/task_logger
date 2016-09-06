@@ -15,6 +15,10 @@ class EntryLogger
     @@projects = MinuteDockProxy.list_projects
   end
 
+  def self.list_categories
+    @@categories = MinuteDockProxy.list_categories
+  end
+
   def self.select_project(project_code)
     if @@projects[project_code].present?
       @@selected_project = project_code
