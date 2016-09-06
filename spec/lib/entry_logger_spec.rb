@@ -73,23 +73,6 @@ describe EntryLogger do
     end
   end
 
-  describe '#select_project' do
-    before do
-      EntryLogger.class_variable_set(:@@projects, { '98' => 'Project 1' })
-    end
-
-    it 'raise execption if passed code is not in project list' do
-      expect {
-        EntryLogger.select_project('100')
-      }.to raise_error(EntryLogger::ProjectNotFoundError)
-    end
-
-    it 'saves in memory the selected project' do
-      EntryLogger.select_project('98')
-      expect(EntryLogger.class_variable_get(:@@selected_project)).to eq('98')
-    end
-  end
-
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do

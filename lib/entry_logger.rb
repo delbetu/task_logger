@@ -1,6 +1,5 @@
 class EntryLogger
   class ValidationError < RuntimeError; end
-  class ProjectNotFoundError < RuntimeError; end
 
   def self.create_entry(params)
     validate_params(params)
@@ -17,14 +16,6 @@ class EntryLogger
 
   def self.list_categories
     @@categories = MinuteDockProxy.list_categories
-  end
-
-  def self.select_project(project_code)
-    if @@projects[project_code].present?
-      @@selected_project = project_code
-    else
-      raise ProjectNotFoundError.new("#{project_code} is not a valid project code")
-    end
   end
 
   def self.report_pending_to_minutedock
