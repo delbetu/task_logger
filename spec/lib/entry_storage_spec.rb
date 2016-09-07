@@ -10,7 +10,7 @@ describe EntryStorage do
   let(:valid_params) do
     {
       date: Date.today,
-      duration: 3.hours,
+      duration: 3.hours.seconds.to_i,
       project: 'Task logger',
       project_id: 1,
       category: 'Analysis',
