@@ -8,7 +8,10 @@ class MinuteDockProxy
 
   def self.list_projects
     api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
-    response = get('/projects.json', query: { api_key: api_key })
+    response = get(
+      '/projects.json',
+      query: { active: true, api_key: api_key }
+    )
     JSON.parse(response.body).map do |project|
       { project['id'] => project['name'] }
     end.inject(:merge)

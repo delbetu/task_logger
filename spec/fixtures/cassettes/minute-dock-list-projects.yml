@@ -2,7 +2,8 @@
 http_interactions:
 - request:
     method: get
-    uri: https://minutedock.com/api/v1/projects.json?api_key=<MINUTE DOCK API KEY>
+    uri: https://minutedock.com/api/v1/projects.json?active=true&api_key=<MINUTE DOCK
+      API KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -23,9 +24,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 18 Aug 2016 03:03:34 GMT
+      - Wed, 07 Sep 2016 00:35:05 GMT
       Etag:
-      - W/"06d327f2f535bd9c3fdefe29e8c11fab"
+      - W/"221099d260d9691b11c77ca66d2e806c"
       Server:
       - nginx/1.1.19
       Status:
@@ -37,13 +38,13 @@ http_interactions:
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.11
       X-Request-Id:
-      - 2f3caad6-cc8c-47b5-aadd-d409ce600a35
+      - 3840960a-1e5a-40d6-86bd-3b2111ea6393
       X-Runtime:
-      - '0.068965'
+      - '0.066278'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
-      - '6961'
+      - '7121'
       Connection:
       - keep-alive
     body:
@@ -63,7 +64,7 @@ http_interactions:
         website","short_code":"tarmacwebsite","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":32883,"contact_id":293356,"name":"Mayo
         IOS","short_code":"mayoios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":34801,"contact_id":293356,"name":"Digital
         Resource Center","short_code":"drc","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35240,"contact_id":408198,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35241,"contact_id":408198,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35612,"contact_id":293356,"name":"Dialogue","short_code":"dialogue","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37565,"contact_id":391600,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37566,"contact_id":391600,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37615,"contact_id":442214,"name":"PRIMROSE","short_code":"primrose","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":38503,"contact_id":522171,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":40890,"contact_id":472629,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":41469,"contact_id":472629,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":46328,"contact_id":227047,"name":"Refer","short_code":"refer","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":49780,"contact_id":227047,"name":"New
-        Clients ","short_code":"new_clients","pinned":false,"hidden":false,"description":"","default_rate_dollars":"0.00","active":true},{"id":58565,"contact_id":522171,"name":"business","short_code":"business","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true}]'
+        Clients ","short_code":"new_clients","pinned":false,"hidden":false,"description":"","default_rate_dollars":"0.00","active":true},{"id":58565,"contact_id":522171,"name":"business","short_code":"business","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":60047,"contact_id":674688,"name":"Marbles","short_code":"marbles","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true}]'
     http_version: 
-  recorded_at: Thu, 18 Aug 2016 03:03:35 GMT
+  recorded_at: Wed, 07 Sep 2016 00:35:06 GMT
 recorded_with: VCR 3.0.3
