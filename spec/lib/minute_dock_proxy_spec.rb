@@ -39,16 +39,11 @@ describe MinuteDockProxy do
     it 'raises error when using invalid credentials'
 
     it 'raises error when minutedock response status is not 200' do
-      class_double(
-        'HTTParty',
-        post: double(headers: { 'status' => 404 })
-      ).as_stubbed_const
+      allow(MinuteDockProxy).to receive(:post).and_return(double(headers: { 'status' => 404 }))
 
-      VCR.use_cassette('minute-dock-report-entry') do
-        expect {
-          MinuteDockProxy.report_entry(entry)
-        }.to raise_error MinuteDockProxy::CommunicationError
-      end
+      expect {
+        MinuteDockProxy.report_entry(entry)
+      }.to raise_error MinuteDockProxy::CommunicationError
     end
   end
 end

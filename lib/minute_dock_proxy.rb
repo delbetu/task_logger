@@ -29,7 +29,7 @@ class MinuteDockProxy
     api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
     user_id = ENV.fetch('MINUTE_DOCK_USER_ID')
 
-    response = HTTParty.post("https://minutedock.com/api/v1/entries.json?api_key=#{api_key}", {
+    response = post("/entries.json?api_key=#{api_key}", {
       body: {
         user_id: user_id,
         entry: {
