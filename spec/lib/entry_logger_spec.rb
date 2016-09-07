@@ -32,7 +32,7 @@ describe EntryLogger do
         entry_storage_mock = create_entry_storage_mock
         expect {
           EntryLogger.create_entry({})
-        }.to raise_error(EntryLogger::ValidationError)
+        }.to raise_error(EntryValidator::ValidationError)
       end
     end
   end
