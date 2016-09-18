@@ -8,10 +8,6 @@ class EntryLogger
     EntryStorage.search(date: Date.today)
   end
 
-  def self.list_projects
-    @@projects = MinuteDockProxy.list_projects
-  end
-
   def self.list_categories
     @@categories = MinuteDockProxy.list_categories
   end

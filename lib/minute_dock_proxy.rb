@@ -6,17 +6,6 @@ class MinuteDockProxy
   include HTTParty
   base_uri 'https://minutedock.com/api/v1/'
 
-  def self.list_projects
-    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
-    response = get(
-      '/projects.json',
-      query: { active: true, api_key: api_key }
-    )
-    JSON.parse(response.body).map do |project|
-      { project['id'] => project['name'] }
-    end.inject(:merge)
-  end
-
   def self.list_categories
     api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
     response = get('/tasks.json', query: { api_key: api_key })

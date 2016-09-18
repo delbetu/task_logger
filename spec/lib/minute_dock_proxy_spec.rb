@@ -2,16 +2,6 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe MinuteDockProxy do
-  describe '#list_projects' do
-    it 'returns projects for the current account' do
-      VCR.use_cassette('minute-dock-list-projects') do
-        response = MinuteDockProxy.list_projects
-        expect(response.values).not_to be_empty
-      end
-    end
-
-    it 'raises error when using invalid credentials'
-  end
 
   describe '#list_categories' do
     it 'returns categories for the current account' do

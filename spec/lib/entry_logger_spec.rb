@@ -47,18 +47,6 @@ describe EntryLogger do
     end
   end
 
-  describe '#list_projects' do
-    it 'fetch, returns and store projects from minutedock api' do
-      fake_minutedock_proxy =
-        class_double('MinuteDockProxy',
-                     list_projects: { '98' => 'Project 1' })
-        .as_stubbed_const
-        result = EntryLogger.list_projects
-        expect(result['98']).to eq('Project 1')
-        expect(EntryLogger.class_variable_get(:@@projects)).to eq({ '98' => 'Project 1' })
-    end
-  end
-
   describe '#list_categories' do
     it 'fetch, returns and store categories from minutedock api' do
       fake_minutedock_proxy =
