@@ -8,6 +8,10 @@ class EntryLogger
     EntryStorage.search(date: Date.today)
   end
 
+  def self.list_projects
+    Config.load_projects
+  end
+
   def self.report_pending_to_minutedock
     pending_entries = EntryStorage.list_pending(:minutedock)
     pending_entries.each do |entry|

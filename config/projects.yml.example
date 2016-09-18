@@ -1,0 +1,9 @@
+projects:
+  1:
+    project_id: 1,
+    minutedock_id: 345,
+    project: 'Project name'
+  2:
+    project_id: 2,
+    minutedock_id: 234,
+    project: 'Project name 2'

@@ -47,6 +47,26 @@ describe EntryLogger do
     end
   end
 
+  describe '#list_projects' do
+    it 'returns a list of projects from configuration' do
+      projects = {
+        1 => {
+          project_id: 1,
+          minutedock_id: 234,
+          project: 'Project name'
+        },
+        2 => {
+          project_id: 2,
+          minutedock_id: 234,
+          project: 'Project name'
+        }
+      }
+      class_double('Config', load_projects: projects).as_stubbed_const
+      result = EntryLogger.list_projects
+      expect(result).to eq(projects)
+    end
+  end
+
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do

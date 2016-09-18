@@ -6,4 +6,5 @@ require_relative 'lib/minute_dock_proxy.rb'
 require_relative 'lib/entry_validator.rb'
 require_relative 'lib/entry_storage.rb'
 require_relative 'lib/entry_logger.rb'
+require_relative 'lib/config.rb'
 
