@@ -47,20 +47,6 @@ describe EntryLogger do
     end
   end
 
-  describe '#list_categories' do
-    it 'fetch, returns and store categories from minutedock api' do
-      fake_minutedock_proxy =
-        class_double(
-          'MinuteDockProxy',
-          list_categories: { '222' => 'Analysis' }
-      ).as_stubbed_const
-
-      result = EntryLogger.list_categories
-      expect(result['222']).to eq('Analysis')
-      expect(EntryLogger.class_variable_get(:@@categories)).to eq({ '222' => 'Analysis' })
-    end
-  end
-
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do

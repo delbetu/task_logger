@@ -8,10 +8,6 @@ class EntryLogger
     EntryStorage.search(date: Date.today)
   end
 
-  def self.list_categories
-    @@categories = MinuteDockProxy.list_categories
-  end
-
   def self.report_pending_to_minutedock
     pending_entries = EntryStorage.list_pending(:minutedock)
     pending_entries.each do |entry|

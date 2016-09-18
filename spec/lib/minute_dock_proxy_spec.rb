@@ -3,15 +3,6 @@ require 'vcr_helper'
 
 describe MinuteDockProxy do
 
-  describe '#list_categories' do
-    it 'returns categories for the current account' do
-      VCR.use_cassette('minute-dock-list-categories') do
-        response = MinuteDockProxy.list_categories
-        expect(response.values).not_to be_empty
-      end
-    end
-  end
-
   describe '#report_entry' do
     let(:entry) do
       Entry.new({
