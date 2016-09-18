@@ -12,6 +12,10 @@ class EntryLogger
     Config.load_projects
   end
 
+  def self.list_categories
+    Config.load_task_categories
+  end
+
   def self.report_pending_to_minutedock
     pending_entries = EntryStorage.list_pending(:minutedock)
     pending_entries.each do |entry|

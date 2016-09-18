@@ -1,0 +1,9 @@
+categories:
+  1:
+    category_id: 1,
+    minutedock_id: 344,
+    category: Analysis
+  2:
+    category_id: 2,
+    minutedock_id: 349,
+    category: Implementation

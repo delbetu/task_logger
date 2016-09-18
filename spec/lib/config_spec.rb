@@ -22,4 +22,24 @@ describe Config do
 
     it 'raises error if file not exist'
   end
+
+  describe '#load_task_categories' do
+    it 'returns categories from file Config::TASK_CATEGORIES_PATH' do
+      stub_const('Config::TASK_CATEGORIES_PATH', 'spec/fixtures/files/config_categories.yml')
+
+      categories = {
+        1 => {
+          'category_id' => 1,
+          'minutedock_id' => 344,
+          'category' => 'Analysis'
+        },
+        2 => {
+          'category_id' => 2,
+          'minutedock_id' => 349,
+          'category' => 'Implementation'
+        }
+      }
+      expect(Config.load_task_categories).to eq(categories)
+    end
+  end
 end

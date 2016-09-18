@@ -67,6 +67,21 @@ describe EntryLogger do
     end
   end
 
+  describe '#list_categories' do
+    it 'returns a list of projects from configuration' do
+      task_categories = {
+        1 => {
+          'category_id' => 1,
+          'minutedock_id' => 234,
+          'category' => 'Analysis'
+        }
+      }
+      class_double('Config', load_task_categories: task_categories).as_stubbed_const
+      result = EntryLogger.list_categories
+      expect(result).to eq(task_categories)
+    end
+  end
+
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do
