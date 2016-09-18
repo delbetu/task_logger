@@ -16,3 +16,4 @@ tags
 .ackrc
 .ctags
 db
+config/*.yml
