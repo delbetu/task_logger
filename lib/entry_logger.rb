@@ -24,4 +24,19 @@ class EntryLogger
     end
   end
 
+  def self.import_projects_from_minutedock
+    projects = MinuteDockProxy.fetch_projects
+
+    translated_projects = projects.map.with_index do |r, index|
+      {
+        index + 1 => {
+          'id' => index + 1,
+          'minutedock_id' => r[0],
+          'project' => r[1]
+        }
+      }
+    end.inject(&:merge)
+
+    Config.store_projects(translated_projects)
+  end
 end

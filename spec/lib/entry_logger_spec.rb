@@ -82,6 +82,23 @@ describe EntryLogger do
     end
   end
 
+  describe '#import_projects_from_minutedock' do
+    it 'fetch projects from minutedock and saves them into projects config file' do
+      sample_projects = { 15153 => "ConnectedHealth", 15154 => "Red Stamp Legacy" }
+      minutedock = class_double('MinuteDockProxy', fetch_projects: sample_projects).as_stubbed_const
+      config = class_double('Config', store_projects: nil).as_stubbed_const
+
+      EntryLogger.import_projects_from_minutedock
+      expect(minutedock).to have_received(:fetch_projects)
+      expect(config).to have_received(:store_projects).with(
+        {
+          1 => { "id" => 1, "minutedock_id" => 15153, "project" => "ConnectedHealth" },
+          2 => { "id" => 2, "minutedock_id" => 15154, "project" => "Red Stamp Legacy" }
+        }
+      )
+    end
+  end
+
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do

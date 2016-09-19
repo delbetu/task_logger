@@ -9,4 +9,7 @@ class Config
   def self.load_task_categories
     YAML.load_file(TASK_CATEGORIES_PATH)['categories']
   end
+
+  def self.store_projects(projects_hash)
+  end
 end
