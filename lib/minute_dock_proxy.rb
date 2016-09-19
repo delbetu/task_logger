@@ -22,6 +22,18 @@ class MinuteDockProxy
     raise CommunicationError.new if minutedock_fails?(response)
   end
 
+  def self.fetch_projects
+    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
+    response = get(
+      '/projects.json',
+      query: { active: true, api_key: api_key }
+    )
+    JSON.parse(response.body).map do |project|
+      { project['id'] => project['name'] }
+    end.inject(:merge)
+  end
+
+
   #TODO: this hide the reason of the fail
   def self.minutedock_fails?(response)
     response.headers['status'] != '200'

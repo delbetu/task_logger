@@ -27,4 +27,15 @@ describe MinuteDockProxy do
       }.to raise_error MinuteDockProxy::CommunicationError
     end
   end
+
+  describe '#fetch_projects' do
+    it 'returns projects for the current account' do
+      VCR.use_cassette('minute-dock-fetch-projects') do
+        response = MinuteDockProxy.fetch_projects
+        expect(response.values).not_to be_empty
+      end
+    end
+
+    it 'raises error when using invalid credentials'
+  end
 end
