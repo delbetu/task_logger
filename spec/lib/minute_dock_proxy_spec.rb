@@ -38,4 +38,13 @@ describe MinuteDockProxy do
 
     it 'raises error when using invalid credentials'
   end
+
+  describe '#fetch_categories' do
+    it 'returns categories for the current account' do
+      VCR.use_cassette('minute-dock-fetch-categories') do
+        response = MinuteDockProxy.fetch_categories
+        expect(response.values).not_to be_empty
+      end
+    end
+  end
 end
