@@ -42,4 +42,25 @@ describe Config do
       expect(Config.load_task_categories).to eq(categories)
     end
   end
+
+  describe '#store_projects' do
+    it 'store projects into file' do
+      system('rm spec/tmp/projects.yml')
+      stub_const('Config::PROJECTS_PATH', 'spec/tmp/projects.yml')
+      projects_hash = {
+        1 => {
+          'minutedock_id' => 111,
+          'project' => 'First project'
+        },
+        2 => {
+          'minutedock_id' => 222,
+          'project' => 'Second project'
+        }
+      }
+
+      Config.store_projects(projects_hash)
+
+      expect(Config.load_projects).to eq(projects_hash)
+    end
+  end
 end

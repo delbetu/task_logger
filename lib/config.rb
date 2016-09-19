@@ -11,5 +11,9 @@ class Config
   end
 
   def self.store_projects(projects_hash)
+    projects_hash = { 'projects' => projects_hash }
+    File.open(PROJECTS_PATH, 'w') do |file|
+      file.write projects_hash.to_yaml
+    end
   end
 end
