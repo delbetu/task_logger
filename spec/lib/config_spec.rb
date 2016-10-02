@@ -45,7 +45,7 @@ describe Config do
 
   describe '#store_projects' do
     it 'store projects into file' do
-      system('rm spec/tmp/projects.yml')
+      system('rm -f spec/tmp/projects.yml')
       stub_const('Config::PROJECTS_PATH', 'spec/tmp/projects.yml')
       projects_hash = {
         1 => {

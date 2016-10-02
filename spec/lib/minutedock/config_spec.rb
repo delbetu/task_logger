@@ -19,7 +19,7 @@ describe MinuteDock::Config do
 
   describe '#store_credentials' do
     it 'stores credentials into config file' do
-      system('rm spec/tmp/md_credentials.yml')
+      system('rm -f spec/tmp/md_credentials.yml')
       stub_const('MinuteDock::Config::MINUTEDOCK_CREDENTIALS', 'spec/tmp/md_credentials.yml')
       credentials = { api_key: 'valid', user_id: 1111 }
 
