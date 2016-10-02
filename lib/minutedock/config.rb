@@ -7,6 +7,12 @@ module MinuteDock
     rescue Errno::ENOENT => e
       raise NoCredentialsError
     end
+
+    def self.store_credentials(credentials)
+      File.open(MINUTEDOCK_CREDENTIALS, 'w') do |file|
+        file.write credentials.to_yaml
+      end
+    end
   end
 end
 

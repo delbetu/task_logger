@@ -39,4 +39,12 @@ class EntryLogger
 
     Config.store_projects(translated_projects)
   end
+
+  def self.setup_minutedock(api_key)
+    unless MinuteDock::Proxy.valid_credentials?(api_key)
+      raise MinuteDock::InvalidCredentialsError
+    end
+    user_id = MinuteDock::Proxy.fetch_user_id(api_key)
+    MinuteDock::Config.store_credentials({ api_key: api_key, user_id: user_id })
+  end
 end

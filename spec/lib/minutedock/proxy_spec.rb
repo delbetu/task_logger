@@ -64,4 +64,15 @@ describe MinuteDock::Proxy do
       end
     end
   end
+
+  describe '#fetch_user_id' do
+    it 'returns the user_id when receiveing a valid api_key' do
+      VCR.use_cassette('minute-dock-fetch-user-id') do
+        valid_api_key = MinuteDock::Proxy.api_key
+        valid_user_id = MinuteDock::Proxy.user_id
+        result = MinuteDock::Proxy.fetch_user_id(valid_api_key)
+        expect(result).to eq(valid_user_id)
+      end
+    end
+  end
 end

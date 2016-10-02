@@ -49,9 +49,14 @@ module MinuteDock
       response.headers['status'] != '200'
     end
 
-    def self.valid_credentials?
-      response = get("/accounts.json?api_key=#{api_key}")
+    def self.valid_credentials?(param_api_key = nil)
+      response = get("/accounts.json?api_key=#{param_api_key || api_key}")
       !minutedock_fails?(response)
+    end
+
+    def self.fetch_user_id(param_api_key)
+      response = get("/entries/current.json?api_key=#{param_api_key}")
+      response.parsed_response['user_id']
     end
   end
 end

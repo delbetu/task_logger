@@ -135,4 +135,27 @@ describe EntryLogger do
     end
     it 'manage exception when minutedock service fails'
   end
+
+  describe '#setup_minutedock' do
+    it 'raises an error when given credentials are invalid' do
+      allow(MinuteDock::Proxy).to receive(:valid_credentials?).and_return(false)
+
+      expect {
+        EntryLogger.setup_minutedock('invalid-api-key')
+      }.to raise_error MinuteDock::InvalidCredentialsError
+    end
+
+    it 'stores given credentials when credentials are valid' do
+      config = class_double('MinuteDock::Config', store_credentials: nil).as_stubbed_const
+      allow(MinuteDock::Proxy).to receive(:valid_credentials?).and_return(true)
+      allow(MinuteDock::Proxy).to receive(:fetch_user_id).and_return(1111)
+      api_key = 'valid-api-key'
+
+      EntryLogger.setup_minutedock(api_key)
+
+      expect(config).to have_received(:store_credentials).with(
+        { api_key: api_key, user_id: 1111 }
+      )
+    end
+  end
 end

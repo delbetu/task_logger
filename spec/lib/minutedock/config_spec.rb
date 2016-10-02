@@ -16,4 +16,16 @@ describe MinuteDock::Config do
       expect(result['user_id']).not_to be_nil
     end
   end
+
+  describe '#store_credentials' do
+    it 'stores credentials into config file' do
+      system('rm spec/tmp/md_credentials.yml')
+      stub_const('MinuteDock::Config::MINUTEDOCK_CREDENTIALS', 'spec/tmp/md_credentials.yml')
+      credentials = { api_key: 'valid', user_id: 1111 }
+
+      MinuteDock::Config.store_credentials(credentials)
+
+      expect(MinuteDock::Config.load_minutedock_credentials).to eq(credentials)
+    end
+  end
 end
