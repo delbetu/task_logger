@@ -47,4 +47,10 @@ class EntryLogger
     user_id = MinuteDock::Proxy.fetch_user_id(api_key)
     MinuteDock::Config.store_credentials({ 'api_key' => api_key, 'user_id' => user_id })
   end
+
+  def self.minutedock_configured?
+    MinuteDock::Proxy.valid_credentials?
+  rescue MinuteDock::NoCredentialsError => e
+    return false
+  end
 end

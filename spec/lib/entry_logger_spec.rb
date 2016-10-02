@@ -136,6 +136,21 @@ describe EntryLogger do
     it 'manage exception when minutedock service fails'
   end
 
+  describe '#minutedock_configured?' do
+    it 'calls to minutedock configuration' do
+      proxy = class_double('MinuteDock::Proxy', valid_credentials?: true).as_stubbed_const
+      EntryLogger.minutedock_configured?
+      expect(proxy).to have_received(:valid_credentials?)
+    end
+
+    it 'returns false when minutedock raise error' do
+      proxy = class_double('MinuteDock::Proxy').as_stubbed_const
+      allow(proxy).to receive(:valid_credentials?).and_raise(MinuteDock::NoCredentialsError)
+      result = EntryLogger.minutedock_configured?
+      expect(result).to be_falsy
+    end
+  end
+
   describe '#setup_minutedock' do
     it 'raises an error when given credentials are invalid' do
       allow(MinuteDock::Proxy).to receive(:valid_credentials?).and_return(false)
