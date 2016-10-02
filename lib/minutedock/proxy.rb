@@ -48,5 +48,10 @@ module MinuteDock
     def self.minutedock_fails?(response)
       response.headers['status'] != '200'
     end
+
+    def self.valid_credentials?
+      response = get("/accounts.json?api_key=#{api_key}")
+      !minutedock_fails?(response)
+    end
   end
 end

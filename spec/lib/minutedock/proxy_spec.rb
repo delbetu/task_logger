@@ -47,4 +47,21 @@ describe MinuteDock::Proxy do
       end
     end
   end
+
+  describe '#valid_credentials?' do
+    it 'returns false when credentials are invalid' do
+      VCR.use_cassette('minute-dock-invalid-credentials') do
+        allow(MinuteDock::Proxy).to receive(:api_key).and_return('invalid')
+        result = MinuteDock::Proxy.valid_credentials?
+        expect(result).to be_falsy
+      end
+    end
+
+    it 'returns true when credentials are valid' do
+      VCR.use_cassette('minute-dock-valid-credentials') do
+        result = MinuteDock::Proxy.valid_credentials?
+        expect(result).to be_truthy
+      end
+    end
+  end
 end
