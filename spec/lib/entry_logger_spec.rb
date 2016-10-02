@@ -85,7 +85,7 @@ describe EntryLogger do
   describe '#import_projects_from_minutedock' do
     it 'fetch projects from minutedock and saves them into projects config file' do
       sample_projects = { 15153 => "ConnectedHealth", 15154 => "Red Stamp Legacy" }
-      minutedock = class_double('MinuteDockProxy', fetch_projects: sample_projects).as_stubbed_const
+      minutedock = class_double('MinuteDock::Proxy', fetch_projects: sample_projects).as_stubbed_const
       config = class_double('Config', store_projects: nil).as_stubbed_const
 
       EntryLogger.import_projects_from_minutedock
@@ -120,7 +120,7 @@ describe EntryLogger do
         entry_storage_mock
       end
       let!(:minutedock_proxy_mock) do
-        minutedock_proxy_mock = class_double('MinuteDockProxy').as_stubbed_const
+        minutedock_proxy_mock = class_double('MinuteDock::Proxy').as_stubbed_const
         allow(minutedock_proxy_mock).to receive(:report_entry).with(non_reported_entry)
         minutedock_proxy_mock
       end

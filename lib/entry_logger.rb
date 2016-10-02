@@ -19,13 +19,13 @@ class EntryLogger
   def self.report_pending_to_minutedock
     pending_entries = EntryStorage.list_pending(:minutedock)
     pending_entries.each do |entry|
-      MinuteDockProxy.report_entry(entry)
+      MinuteDock::Proxy.report_entry(entry)
       EntryStorage.update(entry, minutedock_reported: true)
     end
   end
 
   def self.import_projects_from_minutedock
-    projects = MinuteDockProxy.fetch_projects
+    projects = MinuteDock::Proxy.fetch_projects
 
     translated_projects = projects.map.with_index do |r, index|
       {
