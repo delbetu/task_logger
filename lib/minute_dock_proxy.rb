@@ -6,10 +6,16 @@ class MinuteDockProxy
   include HTTParty
   base_uri 'https://minutedock.com/api/v1/'
 
-  def self.report_entry(entry)
-    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
-    user_id = ENV.fetch('MINUTE_DOCK_USER_ID')
 
+  def self.api_key
+    @@api_key ||= Config.load_minutedock_credentials['api_key']
+  end
+
+  def self.user_id
+    @@user_id ||= Config.load_minutedock_credentials['user_id']
+  end
+
+  def self.report_entry(entry)
     response = post("/entries.json?api_key=#{api_key}", {
       body: {
         user_id: user_id,
@@ -23,7 +29,6 @@ class MinuteDockProxy
   end
 
   def self.fetch_projects
-    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
     response = get(
       '/projects.json',
       query: { active: true, api_key: api_key }
@@ -34,7 +39,6 @@ class MinuteDockProxy
   end
 
   def self.fetch_categories
-    api_key = ENV.fetch('MINUTE_DOCK_API_KEY')
     response = get('/tasks.json', query: { api_key: api_key })
     JSON.parse(response.body).map do |taks_category|
       { taks_category['id'] => taks_category['name'] }

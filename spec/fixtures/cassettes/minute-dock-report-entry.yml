@@ -23,9 +23,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 05 Sep 2016 01:59:39 GMT
+      - Sun, 02 Oct 2016 14:22:53 GMT
       Etag:
-      - W/"878a63daed146f1bc6899fe39e25556b"
+      - W/"04f2e0cdf0b24bd26427901a1e569395"
       Server:
       - nginx/1.1.19
       Status:
@@ -37,9 +37,9 @@ http_interactions:
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.11
       X-Request-Id:
-      - 9d5051ed-d32b-4a0a-946e-e6fc504be022
+      - 033a9d38-d6ae-419b-9e37-c27e95dd27ec
       X-Runtime:
-      - '0.047884'
+      - '0.038519'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -48,9 +48,9 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":6091599,"duration":1600,"contact_id":null,"account_id":15865,"description":"test
-        entry","updated_at":"2016-09-04T22:59:39.564-03:00","invoice_id":null,"logged_at":"2016-09-04T22:59:39.549-03:00","log_at":null,"project_id":null,"user_account_id":29148,"user_id":<MINUTE
+      string: '{"id":6251500,"duration":1600,"contact_id":null,"account_id":15865,"description":"test
+        entry","updated_at":"2016-10-02T12:22:53.921-02:00","invoice_id":null,"logged_at":"2016-10-02T12:22:53.909-02:00","log_at":null,"project_id":null,"user_account_id":29148,"user_id":<MINUTE
         DOCK USER ID>,"logged":true,"timer_active":false,"task_ids":[]}'
     http_version: 
-  recorded_at: Mon, 05 Sep 2016 01:59:39 GMT
+  recorded_at: Sun, 02 Oct 2016 14:22:53 GMT
 recorded_with: VCR 3.0.3

@@ -24,7 +24,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 19 Sep 2016 01:13:39 GMT
+      - Sun, 02 Oct 2016 14:23:22 GMT
       Etag:
       - W/"221099d260d9691b11c77ca66d2e806c"
       Server:
@@ -38,9 +38,9 @@ http_interactions:
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.11
       X-Request-Id:
-      - 295b129f-d5d9-4117-a6dc-19396331900a
+      - 25c8becf-cf92-42d9-af1e-702d5e736813
       X-Runtime:
-      - '0.068636'
+      - '0.062907'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -66,5 +66,5 @@ http_interactions:
         Resource Center","short_code":"drc","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35240,"contact_id":408198,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35241,"contact_id":408198,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":35612,"contact_id":293356,"name":"Dialogue","short_code":"dialogue","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37565,"contact_id":391600,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37566,"contact_id":391600,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":37615,"contact_id":442214,"name":"PRIMROSE","short_code":"primrose","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":38503,"contact_id":522171,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":40890,"contact_id":472629,"name":"Android","short_code":"android","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":41469,"contact_id":472629,"name":"IOS","short_code":"ios","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":46328,"contact_id":227047,"name":"Refer","short_code":"refer","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":49780,"contact_id":227047,"name":"New
         Clients ","short_code":"new_clients","pinned":false,"hidden":false,"description":"","default_rate_dollars":"0.00","active":true},{"id":58565,"contact_id":522171,"name":"business","short_code":"business","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true},{"id":60047,"contact_id":674688,"name":"Marbles","short_code":"marbles","pinned":false,"hidden":false,"description":"","default_rate_dollars":"","active":true}]'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 01:13:39 GMT
+  recorded_at: Sun, 02 Oct 2016 14:23:22 GMT
 recorded_with: VCR 3.0.3

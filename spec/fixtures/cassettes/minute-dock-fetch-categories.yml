@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 19 Sep 2016 01:18:36 GMT
+      - Sun, 02 Oct 2016 14:23:23 GMT
       Etag:
       - W/"76cf5316b5615c246cc9f32999142893"
       Server:
@@ -37,9 +37,9 @@ http_interactions:
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.11
       X-Request-Id:
-      - 7154c6b7-9fb3-40ef-8385-5f3d9aa91264
+      - 7c50da55-b6ba-49ab-997a-b67b7dba7888
       X-Runtime:
-      - '0.022779'
+      - '0.029720'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -55,5 +55,5 @@ http_interactions:
         Administration tasks","short_code":"sysadmin","has_detail":false,"detail_name":null,"hidden":false,"default_rate_dollars":""},{"id":62297,"name":"Tech
         Talk","description":"","short_code":"techtalk","has_detail":false,"detail_name":null,"hidden":false,"default_rate_dollars":""},{"id":62992,"name":"testing","description":"","short_code":"testing","has_detail":false,"detail_name":null,"hidden":false,"default_rate_dollars":""}]'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 01:18:36 GMT
+  recorded_at: Sun, 02 Oct 2016 14:23:23 GMT
 recorded_with: VCR 3.0.3
