@@ -154,7 +154,7 @@ describe EntryLogger do
       EntryLogger.setup_minutedock(api_key)
 
       expect(config).to have_received(:store_credentials).with(
-        { api_key: api_key, user_id: 1111 }
+        { 'api_key' => api_key, 'user_id' => 1111 }
       )
     end
   end

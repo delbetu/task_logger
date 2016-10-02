@@ -45,6 +45,6 @@ class EntryLogger
       raise MinuteDock::InvalidCredentialsError
     end
     user_id = MinuteDock::Proxy.fetch_user_id(api_key)
-    MinuteDock::Config.store_credentials({ api_key: api_key, user_id: user_id })
+    MinuteDock::Config.store_credentials({ 'api_key' => api_key, 'user_id' => user_id })
   end
 end
