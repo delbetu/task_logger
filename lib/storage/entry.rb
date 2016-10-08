@@ -7,6 +7,15 @@ module Storage
       entry
     end
 
+    def self.remove(entry_id)
+      entries = file_store.load_entries
+      file_store.remove_file!
+      entries.except!(entry_id)
+      entries.values.each do |entry|
+        file_store.save(entry)
+      end
+    end
+
     def self.count
       all.length
     end

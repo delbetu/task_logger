@@ -25,6 +25,17 @@ describe Storage::Entry do
     end
   end
 
+  describe '#remove' do
+    it 'removes the entry from the database file' do
+      Storage::Entry.create(valid_params)
+      Storage::Entry.create(valid_params)
+
+      Storage::Entry.remove(2)
+
+      expect(Storage::Entry.all.count).to eq(1)
+    end
+  end
+
   describe '#search' do
     it 'returns entries which have given value and attribute' do
       returned = Storage::Entry.create(valid_params)

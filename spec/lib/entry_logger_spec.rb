@@ -3,7 +3,8 @@ require 'entry_logger'
 def create_entry_storage_mock
   class_double(
     'Storage::Entry', {
-      create: double(id: 1)
+      create: double(id: 1),
+      remove: nil
     }).as_stubbed_const
 end
 
@@ -34,6 +35,15 @@ describe EntryLogger do
           EntryLogger.create_entry({})
         }.to raise_error(EntryValidator::ValidationError)
       end
+    end
+  end
+
+  describe '#remove_entry' do
+    it 'removes entry from entry storage when entry exists' do
+      entry_storage_mock = create_entry_storage_mock
+      entry_id = 1
+      EntryLogger.remove_entry(entry_id)
+      expect(entry_storage_mock).to have_received(:remove).with(entry_id)
     end
   end
 

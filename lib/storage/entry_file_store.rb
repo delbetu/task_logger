@@ -18,6 +18,10 @@ module Storage
       entries
     end
 
+    def remove_file!
+      system("rm -f #{FILE_PATH}")
+    end
+
     def save(entry)
       transaction do
         self[entry.id] = entry

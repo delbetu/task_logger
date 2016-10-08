@@ -4,6 +4,10 @@ class EntryLogger
     Storage::Entry.create(params)
   end
 
+  def self.remove_entry(entry_id)
+    Storage::Entry.remove(entry_id)
+  end
+
   def self.list_entries_for_today
     Storage::Entry.search(date: Date.today)
   end
