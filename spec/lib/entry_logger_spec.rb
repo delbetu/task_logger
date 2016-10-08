@@ -173,4 +173,20 @@ describe EntryLogger do
       )
     end
   end
+
+  describe '#import_categories_from_minutedock' do
+    it 'fetch categories from minutedock and saves this categories in configuration files' do
+      sample_categories = { 123 => 'Analysis', 234 => 'Implementation' }
+      minutedock = class_double('MinuteDock::Proxy', fetch_categories: sample_categories).as_stubbed_const
+      config = class_double('Config', store_categories: nil).as_stubbed_const
+      EntryLogger.import_categories_from_minutedock
+      expect(minutedock).to have_received(:fetch_categories)
+      expect(config).to have_received(:store_categories).with(
+        {
+          1 => { 'id' => 1, 'minutedock_id' => 123, 'category' => 'Analysis' },
+          2 => { 'id' => 2, 'minutedock_id' => 234, 'category' => 'Implementation' }
+        }
+      )
+    end
+  end
 end

@@ -63,4 +63,25 @@ describe Config do
       expect(Config.load_projects).to eq(projects_hash)
     end
   end
+
+  describe '#store_categories' do
+    it 'store categories into file' do
+      system('rm -f spec/tmp/projects.yml')
+      stub_const('Config::TASK_CATEGORIES_PATH', 'spec/tmp/categories.yml')
+      categories_hash = {
+        1 => {
+          'minutedock_id' => 111,
+          'category' => 'Analysis'
+        },
+        2 => {
+          'minutedock_id' => 222,
+          'category' => 'Implementation'
+        }
+      }
+
+      Config.store_categories(categories_hash)
+
+      expect(Config.load_task_categories).to eq(categories_hash)
+    end
+  end
 end

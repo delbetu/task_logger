@@ -53,4 +53,22 @@ class EntryLogger
   rescue MinuteDock::NoCredentialsError => e
     return false
   end
+
+  def self.import_categories_from_minutedock
+    categories = MinuteDock::Proxy.fetch_categories
+    transform = lambda do |values, number|
+      {
+        number + 1 => {
+          'id' => number + 1,
+          'minutedock_id' => values[0],
+          'category' => values[1]
+        }
+      }
+    end
+
+    translated_categories =
+      categories.map.with_index.map(&transform).inject(&:merge)
+
+    Config.store_categories(translated_categories)
+  end
 end

@@ -17,4 +17,10 @@ class Config
     end
   end
 
+  def self.store_categories(categories_hash)
+    categories_hash = { 'categories' => categories_hash }
+    File.open(TASK_CATEGORIES_PATH, 'w') do |file|
+      file.write categories_hash.to_yaml
+    end
+  end
 end
