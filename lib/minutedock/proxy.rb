@@ -1,8 +1,8 @@
 require 'httparty'
 
-# Every communication with minute dock should be wrapped up in this class
 module MinuteDock
   class Proxy
+  ###### Every interaction with minute dock should be wrapped up in this class ######
     include HTTParty
     base_uri 'https://minutedock.com/api/v1/'
 
@@ -20,7 +20,9 @@ module MinuteDock
           user_id: user_id,
           entry: {
             duration: entry.duration,
-            description: entry.description
+            description: entry.description,
+            task_ids: [ entry.category_id ],
+            project_id: entry.project_id
           }
         }
       })
