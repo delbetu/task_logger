@@ -2,7 +2,7 @@ require 'entry_logger'
 
 def create_entry_storage_mock
   class_double(
-    'EntryStorage', {
+    'Storage::Entry', {
       create: double(id: 1)
     }).as_stubbed_const
 end
@@ -40,7 +40,7 @@ describe EntryLogger do
   describe '#list_entries_for_today' do
     it 'returns entries for today' do
       entry_storage_mock =
-        class_double('EntryStorage', search: [1, 2]).as_stubbed_const
+        class_double('Storage::Entry', search: [1, 2]).as_stubbed_const
       EntryLogger.list_entries_for_today
       expect(entry_storage_mock).to have_received(:search).
         with(date: Date.today)
@@ -102,7 +102,7 @@ describe EntryLogger do
   describe '#report_pending_to_minutedock' do
     context 'when there is a non reported entry' do
       let(:non_reported_entry) do
-        Entry.new({
+        EntryValue.new({
           id: 1,
           date: Date.today,
           duration: 3.hours.seconds.to_i,
@@ -114,7 +114,7 @@ describe EntryLogger do
         })
       end
       let!(:entry_storage_mock) do
-        entry_storage_mock = class_double('EntryStorage').as_stubbed_const
+        entry_storage_mock = class_double('Storage::Entry').as_stubbed_const
         allow(entry_storage_mock).to receive(:list_pending).with(:minutedock).and_return([ non_reported_entry ])
         allow(entry_storage_mock).to receive(:update).with(non_reported_entry, minutedock_reported: true)
         entry_storage_mock

@@ -1,6 +1,6 @@
 SERVICES_TO_REPORT = [ :minutedock ]
 
-class Entry < Struct.new(:id, :date, :duration, :project, :project_id,
+class EntryValue < Struct.new(:id, :date, :duration, :project, :project_id,
                          :category, :category_id, :description, :minutedock_reported)
 
   def initialize(hash_values)

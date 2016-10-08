@@ -2,7 +2,7 @@ class EntryValidator
   class ValidationError < RuntimeError; end
 
   def initialize(params)
-    @entry = Entry.new(params)
+    @entry = EntryValue.new(params)
   end
 
   def validate

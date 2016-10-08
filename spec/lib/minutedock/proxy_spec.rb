@@ -5,7 +5,7 @@ describe MinuteDock::Proxy do
 
   describe '#report_entry' do
     let(:entry) do
-      Entry.new({
+      EntryValue.new({
         duration: 1600,
         description: 'test entry'
       })
