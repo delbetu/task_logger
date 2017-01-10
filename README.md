@@ -65,14 +65,14 @@ The pieces of code are divided on **UI**, **Interactor** and **IO-Objects**.
   - Recieves petitions from the UI
   - Implements bussiness logic by Interacting with IO-Objects
 
-**IO-Oobjects**
+**IO-Objects**
   - Interact with one IO-device (storage or network) by wrapping a third-party library.
 
-##What development process was this built ?
+##What development process was used ?
 
-First thinking of how UI will interact with user and then deciding what functions
-the Interactor object should provide.
+This was build using TDD.
+First thinking of how UI would interact with user and then deciding what functions the Interactor object should provide.
 Then start proggramming the outer TDD loop over the interactor stubbing out IO-objects.
-After that the interface for the IO-object was revelated so the inner TDD loop starts.
+After that the interface for the IO-object was revealed so the inner TDD loop starts.
 
 ##Any comments on the code are welcome.
