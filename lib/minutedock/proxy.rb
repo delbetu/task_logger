@@ -2,7 +2,6 @@ require 'httparty'
 
 module MinuteDock
   class Proxy
-  ###### Every interaction with minute dock should be wrapped up in this class ######
     include HTTParty
     base_uri 'https://minutedock.com/api/v1/'
 
