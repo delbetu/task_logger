@@ -4,7 +4,7 @@ module MinuteDock
 
     def self.load_minutedock_credentials
       YAML.load_file(MINUTEDOCK_CREDENTIALS)
-    rescue Errno::ENOENT => e
+    rescue Errno::ENOENT
       raise NoCredentialsError
     end
 
@@ -15,5 +15,3 @@ module MinuteDock
     end
   end
 end
-
-

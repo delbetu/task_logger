@@ -2,6 +2,10 @@ require 'spec_helper'
 require 'vcr_helper'
 
 describe MinuteDock::Proxy do
+  before do
+    allow(MinuteDock::Config).to receive(:load_minutedock_credentials)
+      .and_return('api_key' => '0987654321', 'user_id' => 1111)
+  end
 
   describe '#report_entry' do
     let(:entry) do
@@ -13,14 +17,15 @@ describe MinuteDock::Proxy do
 
     it 'sends data to minutedock' do
       VCR.use_cassette('minute-dock-report-entry') do
-        response = MinuteDock::Proxy.report_entry(entry)
+        MinuteDock::Proxy.report_entry(entry)
       end
     end
 
     it 'raises error when using invalid credentials'
 
     it 'raises error when minutedock response status is not 200' do
-      allow(MinuteDock::Proxy).to receive(:post).and_return(double(headers: { 'status' => 404 }))
+      allow(MinuteDock::Proxy).to receive(:post)
+        .and_return(double(headers: { 'status' => 404 }))
 
       expect {
         MinuteDock::Proxy.report_entry(entry)
