@@ -1,6 +1,7 @@
 require 'httparty'
 
 module MinuteDock
+  # Responsible for interacting with minutedock.
   class Proxy
     include HTTParty
     base_uri 'https://minutedock.com/api/v1/'
@@ -20,12 +21,14 @@ module MinuteDock
           entry: {
             duration: entry.duration,
             description: entry.description,
-            task_ids: [ entry.category_id ],
+            task_ids: [entry.category_id],
             project_id: entry.project_id
           }
         }
       })
-      raise CommunicationError.new if minutedock_fails?(response)
+
+      error_message = 'Minutedock error trying to report an entry'
+      raise CommunicationError, error_message if minutedock_fails?(response)
     end
 
     def self.fetch_projects
@@ -45,7 +48,7 @@ module MinuteDock
       end.inject(:merge)
     end
 
-    #TODO: this hide the reason of the fail
+    # TODO: this hide the reason of the fail
     def self.minutedock_fails?(response)
       response.headers['status'] != '200'
     end

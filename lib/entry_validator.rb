@@ -1,3 +1,4 @@
+# Responsible for validating Entries
 class EntryValidator
   class ValidationError < RuntimeError; end
 
@@ -6,8 +7,8 @@ class EntryValidator
   end
 
   def validate
-    #TODO validate that project id is correct
-    #TODO validate that category id is correct
+    # TODO: validate that project id is correct
+    # TODO: validate that category id is correct
     validate_date
     validate_duration
   end
@@ -15,13 +16,13 @@ class EntryValidator
   private
 
   def validate_date
-    raise ValidationError.new('Date is required') unless @entry.date.present?
+    error_message = 'Date is required'
+    raise ValidationError, error_message unless @entry.date.present?
   end
 
   def validate_duration
-    if @entry.duration.present?
-      raise ValidationError.new('Duration must be in seconds') unless @entry.duration.is_a?(Numeric)
-    end
+    return unless @entry.duration.present?
+    error_message = 'Duration must be in seconds'
+    raise ValidationError, error_message unless @entry.duration.is_a?(Numeric)
   end
 end
-

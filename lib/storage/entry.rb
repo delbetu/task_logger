@@ -51,7 +51,7 @@ module Storage
       file_store.save(existing_entry)
     end
 
-    private
+    private_class_method
 
     def self.file_store
       @@entries ||= EntryFileStore.new

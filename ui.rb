@@ -55,7 +55,7 @@ def manage_activities
   loop do
     today_activities
     puts '1) - Log'
-    puts "2) - Remove"
+    puts '2) - Remove'
     number = gets.chomp.to_i
     case number
     when 0
@@ -75,7 +75,7 @@ def log_activity
   description = ask_for_description
   category_id = ask_for_category
   category = EntryLogger.list_categories[category_id]
-  EntryLogger.create_entry({
+  EntryLogger.create_entry(
     date: Date.today,
     project: project['project'],
     project_id: project['minutedock_id'],
@@ -83,7 +83,7 @@ def log_activity
     category_id: category['minutedock_id'],
     duration: duration.try(:hours),
     description: description
-  })
+  )
 end
 
 def ask_for_project
@@ -91,7 +91,7 @@ def ask_for_project
     projects = EntryLogger.list_projects
     projects_to_select = projects.keys
     projects_to_select.each_with_index do |k, i|
-      puts "#{i+1} - #{projects[k]['project']}"
+      puts "#{i + 1} - #{projects[k]['project']}"
     end
     puts 'Select Project Number:'
     selected_number = gets.chomp.to_i
@@ -111,7 +111,7 @@ def ask_for_duration
   puts 'Duration (hours):'
   loop do
     number = gets.chomp.to_i
-    if number == 0
+    if number.zero?
       puts 'no duration given'
       break
     elsif (1..24).include?(number)
@@ -134,18 +134,18 @@ def ask_for_category
     categories = EntryLogger.list_categories
     categories_to_select = categories.keys
     categories_to_select.each_with_index do |k, i|
-      puts "#{i+1} - #{categories[k]['category']}"
+      puts "#{i + 1} - #{categories[k]['category']}"
     end
     puts 'Select Category Number:'
     selected_number = gets.chomp.to_i
-    if selected_number == 0
+    if selected_number.zero?
       puts 'No category selected'
       break
     elsif (1..categories.count).include?(selected_number)
-      category_id = categories_to_select[selected_number-1]
+      category_id = categories_to_select[selected_number - 1]
       return category_id
     else
-      puts "Wrong number, select again"
+      puts 'Wrong number, select again'
     end
   end
 end
@@ -154,8 +154,8 @@ def today_activities
   entries = EntryLogger.list_entries_for_today
 
   title = "Today's activities"
-  spacer_count = (ActivitiesPrinter.table_header.length - title.length)/2
-  spacer = '-'*spacer_count
+  spacer_count = (ActivitiesPrinter.table_header.length - title.length) / 2
+  spacer = '-' * spacer_count
   puts "#{spacer} #{title} #{spacer}"
 
   ActivitiesPrinter.print(entries)
@@ -167,7 +167,7 @@ def remove_activity
     puts 'Number of entry to delete:'
     number = gets.chomp.to_i
 
-    break if number == 0
+    break if number.zero?
 
     if number <= entries.length
       entry_id = entries[number - 1].id
@@ -192,12 +192,16 @@ def configure_minutedock
   EntryLogger.setup_minutedock(api_key)
   EntryLogger.import_projects_from_minutedock
   EntryLogger.import_categories_from_minutedock
-rescue MinuteDock::InvalidCredentialsError => e
-  puts "API key seems to be invalid, try again"
+rescue MinuteDock::InvalidCredentialsError
+  puts 'API key seems to be invalid, try again'
 end
 
+# Responsible for formatting and printing activities
 class ActivitiesPrinter
-  NUMBER_LENGTH, PROJECT_LENGTH, DESC_LENGTH, DURATION_LENGTH = 5, 15, 50, 10
+  NUMBER_LENGTH = 15
+  PROJECT_LENGTH = 50
+  DESC_LENGTH = 10
+  DURATION_LENGTH = 5
 
   def self.print(entries)
     print_activities_header
@@ -209,28 +213,30 @@ class ActivitiesPrinter
 
   def self.table_header
     "%-#{NUMBER_LENGTH}s | %-#{PROJECT_LENGTH}s | %-#{DESC_LENGTH}s | %-#{DURATION_LENGTH}s" %
-    ['Number', 'Project', 'Description', 'Duration']
+      ['Number', 'Project', 'Description', 'Duration']
   end
 
   def self.print_activities_header
     puts
     puts table_header
-    puts "-" * (table_header.length)
+    puts '-' * table_header.length
   end
 
   def self.print_formatted_activity(index, entry)
     formatted_output =
       "%-#{NUMBER_LENGTH}s | %-#{PROJECT_LENGTH}s | %-#{DESC_LENGTH}s | %-#{DURATION_LENGTH}s" %
-    [ cut_text_at(index.to_s, NUMBER_LENGTH),
-      cut_text_at(entry.project, PROJECT_LENGTH),
-      cut_text_at(entry.description, DESC_LENGTH),
-      cut_text_at("#{entry.duration.to_i/60/60} hs", DURATION_LENGTH) ]
+        [
+          cut_text_at(index.to_s, NUMBER_LENGTH),
+          cut_text_at(entry.project, PROJECT_LENGTH),
+          cut_text_at(entry.description, DESC_LENGTH),
+          cut_text_at("#{entry.duration.to_i / 60 / 60} hs", DURATION_LENGTH)
+        ]
     puts formatted_output
   end
 
   def self.cut_text_at(text, num)
     return '' unless text.present?
-    text[0..(num-1)]
+    text[0..(num - 1)]
   end
 end
 

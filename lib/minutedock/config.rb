@@ -1,6 +1,7 @@
 module MinuteDock
+  # Responsible for loading and storing minutedock credentials
   class Config
-    MINUTEDOCK_CREDENTIALS = 'config/minutedock_credentials.yml'
+    MINUTEDOCK_CREDENTIALS = 'config/minutedock_credentials.yml'.freeze
 
     def self.load_minutedock_credentials
       YAML.load_file(MINUTEDOCK_CREDENTIALS)

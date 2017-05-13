@@ -1,6 +1,6 @@
 class Config
-  PROJECTS_PATH = 'config/projects.yml'
-  TASK_CATEGORIES_PATH = 'config/task_categories.yml'
+  PROJECTS_PATH = 'config/projects.yml'.freeze
+  TASK_CATEGORIES_PATH = 'config/task_categories.yml'.freeze
 
   def self.load_projects
     YAML.load_file(PROJECTS_PATH)['projects']
