@@ -9,10 +9,7 @@ describe MinuteDock::Proxy do
 
   describe '#report_entry' do
     let(:entry) do
-      EntryValue.new({
-        duration: 1600,
-        description: 'test entry'
-      })
+      EntryValue.new(duration: 1600, description: 'test entry')
     end
 
     it 'sends data to minutedock' do
@@ -27,9 +24,8 @@ describe MinuteDock::Proxy do
       allow(MinuteDock::Proxy).to receive(:post)
         .and_return(double(headers: { 'status' => 404 }))
 
-      expect {
-        MinuteDock::Proxy.report_entry(entry)
-      }.to raise_error MinuteDock::CommunicationError
+      expect { MinuteDock::Proxy.report_entry(entry) }
+        .to raise_error MinuteDock::CommunicationError
     end
   end
 
