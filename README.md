@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/delbetu/task_logger/tree/master.svg?style=svg)](https://circleci.com/gh/delbetu/task_logger/tree/master)
+
 # Task logger
 
 Command line tool for logging your daily tasks.
