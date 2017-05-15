@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'httparty'
-gem 'dotenv'
-gem 'rspec'
 gem 'activesupport'
 gem 'byebug'
+gem 'dotenv'
+gem 'httparty'
+gem 'rspec'
+gem 'simplecov', require: false
 gem 'vcr'
 gem 'webmock'

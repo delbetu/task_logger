@@ -1,6 +1,7 @@
+require 'simplecov'
+SimpleCov.start
 require 'byebug'
 require_relative '../load_environment'
-
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
