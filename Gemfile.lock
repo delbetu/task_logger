@@ -8,6 +8,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     byebug (9.0.5)
+    codacy-coverage (1.1.6)
+      simplecov
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -55,6 +57,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   byebug
+  codacy-coverage
   dotenv
   httparty
   rspec

@@ -1,5 +1,8 @@
 require 'simplecov'
 SimpleCov.start
+require 'codacy-coverage'
+Codacy::Reporter.start
+
 require 'byebug'
 require_relative '../load_environment'
 
