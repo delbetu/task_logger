@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/30203d2fc36d4e9daecd3c37ccc4642d)](https://www.codacy.com/app/delbetu/task_logger?utm_source=github.com&utm_medium=referral&utm_content=delbetu/task_logger&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/delbetu/task_logger/tree/master.svg?style=svg)](https://circleci.com/gh/delbetu/task_logger/tree/master)
 
 # Task logger
