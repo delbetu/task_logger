@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/delbetu/task_logger/tree/master.svg?style=svg)](https://circleci.com/gh/delbetu/task_logger/tree/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/30203d2fc36d4e9daecd3c37ccc4642d)](https://www.codacy.com/app/delbetu/task_logger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=delbetu/task_logger&amp;utm_campaign=Badge_Grade)
 
 # Task logger
 
