@@ -98,11 +98,11 @@ def ask_for_project
     if selected_number == 0
       puts 'No project selected'
       break
-    elsif (1..projects.count).include?(selected_number)
-      project_id = projects_to_select[selected_number-1]
+    elsif (1..projects.count).cover?(selected_number)
+      project_id = projects_to_select[selected_number - 1]
       return project_id
     else
-      puts "Wrong number, select again"
+      puts 'Wrong number, select again'
     end
   end
 end
@@ -114,7 +114,7 @@ def ask_for_duration
     if number.zero?
       puts 'no duration given'
       break
-    elsif (1..24).include?(number)
+    elsif (1..24).cover?(number)
       return number
     else
       puts 'Introduce number of hours for the task'
@@ -141,7 +141,7 @@ def ask_for_category
     if selected_number.zero?
       puts 'No category selected'
       break
-    elsif (1..categories.count).include?(selected_number)
+    elsif (1..categories.count).cover?(selected_number)
       category_id = categories_to_select[selected_number - 1]
       return category_id
     else
@@ -213,7 +213,7 @@ class ActivitiesPrinter
 
   def self.table_header
     "%-#{NUMBER_LENGTH}s | %-#{PROJECT_LENGTH}s | %-#{DESC_LENGTH}s | %-#{DURATION_LENGTH}s" %
-      ['Number', 'Project', 'Description', 'Duration']
+      %w[Number Project Description Duration]
   end
 
   def self.print_activities_header
@@ -225,12 +225,12 @@ class ActivitiesPrinter
   def self.print_formatted_activity(index, entry)
     formatted_output =
       "%-#{NUMBER_LENGTH}s | %-#{PROJECT_LENGTH}s | %-#{DESC_LENGTH}s | %-#{DURATION_LENGTH}s" %
-        [
-          cut_text_at(index.to_s, NUMBER_LENGTH),
-          cut_text_at(entry.project, PROJECT_LENGTH),
-          cut_text_at(entry.description, DESC_LENGTH),
-          cut_text_at("#{entry.duration.to_i / 60 / 60} hs", DURATION_LENGTH)
-        ]
+      [
+        cut_text_at(index.to_s, NUMBER_LENGTH),
+        cut_text_at(entry.project, PROJECT_LENGTH),
+        cut_text_at(entry.description, DESC_LENGTH),
+        cut_text_at("#{entry.duration.to_i / 60 / 60} hs", DURATION_LENGTH)
+      ]
     puts formatted_output
   end
 

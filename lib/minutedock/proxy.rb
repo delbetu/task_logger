@@ -15,17 +15,15 @@ module MinuteDock
     end
 
     def self.report_entry(entry)
-      response = post("/entries.json?api_key=#{api_key}", {
-        body: {
-          user_id: user_id,
-          entry: {
-            duration: entry.duration,
-            description: entry.description,
-            task_ids: [entry.category_id],
-            project_id: entry.project_id
-          }
-        }
-      })
+      response = post("/entries.json?api_key=#{api_key}", body: {
+                        user_id: user_id,
+                        entry: {
+                          duration: entry.duration,
+                          description: entry.description,
+                          task_ids: [entry.category_id],
+                          project_id: entry.project_id
+                        }
+                      })
 
       error_message = 'Minutedock error trying to report an entry'
       raise CommunicationError, error_message if minutedock_fails?(response)

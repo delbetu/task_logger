@@ -15,9 +15,9 @@ describe EntryValidator do
   describe '#validate' do
     it 'raises error if duration is not in seconds' do
       validator = EntryValidator.new(valid_params.merge(duration: '22'))
-      expect {
+      expect do
         validator.validate
-      }.to raise_error(EntryValidator::ValidationError)
+      end.to raise_error(EntryValidator::ValidationError)
     end
   end
 end

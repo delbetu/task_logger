@@ -5,9 +5,9 @@ describe MinuteDock::Config do
     it 'raise an error when config file does not exists' do
       stub_const('MinuteDock::Config::MINUTEDOCK_CREDENTIALS', 'no/exists.yml')
 
-      expect {
+      expect do
         MinuteDock::Config.load_minutedock_credentials
-      }.to raise_error MinuteDock::NoCredentialsError
+      end.to raise_error MinuteDock::NoCredentialsError
     end
 
     it 'returns api_key and user_id credentials' do

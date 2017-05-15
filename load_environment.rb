@@ -11,4 +11,3 @@ require_relative 'lib/storage/entry_file_store.rb'
 require_relative 'lib/storage/entry.rb'
 require_relative 'lib/entry_logger.rb'
 require_relative 'lib/config.rb'
-

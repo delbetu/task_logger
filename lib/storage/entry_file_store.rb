@@ -2,7 +2,7 @@ require 'yaml/store'
 
 module Storage
   class EntryFileStore < YAML::Store
-    FILE_PATH = 'db/entries.pstore'
+    FILE_PATH = 'db/entries.pstore'.freeze
 
     def initialize
       super(FILE_PATH)
@@ -12,7 +12,7 @@ module Storage
       entries = {}
       transaction do
         roots.each do |key|
-          entries.merge!( { key => fetch(key) } )
+          entries.merge!(key => fetch(key))
         end
       end
       entries
