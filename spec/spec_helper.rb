@@ -1,6 +1,8 @@
-require 'simplecov'
-SimpleCov.start
+require 'active_support/all'
 require 'byebug'
+require 'codacy-coverage'
+Codacy::Reporter.start
+
 require_relative '../load_environment'
 
 RSpec.configure do |config|
