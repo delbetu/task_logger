@@ -1,3 +1,10 @@
+require_relative 'data_structures'
+require_relative 'entry_validator'
+require_relative 'minutedock/errors'
+require_relative 'minutedock/proxy'
+require_relative 'storage/entry'
+require_relative 'config'
+
 class EntryLogger
   def self.create_entry(params)
     EntryValidator.new(params).validate

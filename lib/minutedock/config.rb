@@ -1,3 +1,6 @@
+require 'yaml'
+require_relative 'errors'
+
 module MinuteDock
   # Responsible for loading and storing minutedock credentials
   class Config

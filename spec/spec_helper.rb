@@ -1,9 +1,7 @@
-require 'active_support/all'
+require_relative '../load_environment'
 require 'byebug'
 require 'codacy-coverage'
 Codacy::Reporter.start
-
-require_relative '../load_environment'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

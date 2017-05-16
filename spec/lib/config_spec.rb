@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'config'
 
 describe Config do
   describe '#load_projects' do

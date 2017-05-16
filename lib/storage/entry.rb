@@ -1,3 +1,6 @@
+require_relative 'errors'
+require_relative 'entry_file_store'
+
 module Storage
   class Entry
     def self.create(params)

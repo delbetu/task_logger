@@ -1,4 +1,5 @@
 require 'httparty'
+require_relative 'config'
 
 module MinuteDock
   # Responsible for interacting with minutedock.

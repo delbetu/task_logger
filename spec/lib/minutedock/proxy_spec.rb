@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'vcr_helper'
+require 'minutedock/proxy'
 
 describe MinuteDock::Proxy do
   before do

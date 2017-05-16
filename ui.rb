@@ -1,4 +1,5 @@
 require_relative 'load_environment.rb'
+require_relative 'lib/entry_logger'
 require 'byebug'
 
 def main

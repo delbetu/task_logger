@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'storage/entry'
 
 describe Storage::Entry do
   before(:each) do

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'minutedock/config'
 
 describe MinuteDock::Config do
   describe '#load_minutedock_credentials' do

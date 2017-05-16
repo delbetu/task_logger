@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Config
   PROJECTS_PATH = 'config/projects.yml'.freeze
   TASK_CATEGORIES_PATH = 'config/task_categories.yml'.freeze

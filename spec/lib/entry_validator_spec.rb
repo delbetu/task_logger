@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'entry_validator'
 
 describe EntryValidator do
   let(:valid_params) do
