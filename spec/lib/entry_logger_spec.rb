@@ -74,6 +74,15 @@ describe EntryLogger do
       result = EntryLogger.list_projects
       expect(result).to eq(projects)
     end
+
+    it 'raises an error when no projects file exists' do
+      allow(Config).to receive(:load_projects)
+        .and_raise(Config::ProjectsFileNotFoundError)
+
+      expect do
+        EntryLogger.list_projects
+      end.to raise_error StandardError, 'Projects file not configured yet.'
+    end
   end
 
   describe '#list_categories' do

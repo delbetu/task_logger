@@ -1,11 +1,15 @@
 require 'yaml'
 
 class Config
+  class ProjectsFileNotFoundError < StandardError; end
+
   PROJECTS_PATH = 'config/projects.yml'.freeze
   TASK_CATEGORIES_PATH = 'config/task_categories.yml'.freeze
 
   def self.load_projects
     YAML.load_file(PROJECTS_PATH)['projects']
+  rescue Errno::ENOENT => e
+    raise Config::ProjectsFileNotFoundError, e.message
   end
 
   def self.load_task_categories

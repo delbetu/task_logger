@@ -21,7 +21,13 @@ describe Config do
       expect(Config.load_projects).to eq(projects)
     end
 
-    it 'raises error if file not exist'
+    it 'raises error if file not exist' do
+      stub_const('Config::PROJECTS_PATH', 'no/exists/file.yml')
+
+      expect do
+        Config.load_projects
+      end.to raise_error Config::ProjectsFileNotFoundError
+    end
   end
 
   describe '#load_task_categories' do

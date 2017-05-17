@@ -21,6 +21,8 @@ class EntryLogger
 
   def self.list_projects
     Config.load_projects
+  rescue Config::ProjectsFileNotFoundError
+    raise StandardError, 'Projects file not configured yet.'
   end
 
   def self.list_categories
