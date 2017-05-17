@@ -48,6 +48,13 @@ describe Config do
       }
       expect(Config.load_task_categories).to eq(categories)
     end
+
+    it 'raises an error when file not exists' do
+      stub_const('Config::TASK_CATEGORIES_PATH', 'no/exists/file.yml')
+      expect do
+        Config.load_task_categories
+      end.to raise_error Config::CategoriesFileNotFoundError
+    end
   end
 
   describe '#store_projects' do

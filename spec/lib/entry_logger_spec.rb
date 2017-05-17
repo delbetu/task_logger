@@ -86,7 +86,7 @@ describe EntryLogger do
   end
 
   describe '#list_categories' do
-    it 'returns a list of projects from configuration' do
+    it 'returns a list of categories from configuration' do
       task_categories = {
         1 => {
           'category_id' => 1,
@@ -98,6 +98,15 @@ describe EntryLogger do
         .as_stubbed_const
       result = EntryLogger.list_categories
       expect(result).to eq(task_categories)
+    end
+
+    it 'raises an error when no categories were configured yet' do
+      allow(Config).to receive(:load_projects)
+        .and_raise(Config::CategoriesFileNotFoundError)
+
+      expect do
+        EntryLogger.list_categories
+      end.to raise_error StandardError, 'Categories not configured yet.'
     end
   end
 

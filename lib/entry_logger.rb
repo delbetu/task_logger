@@ -27,6 +27,8 @@ class EntryLogger
 
   def self.list_categories
     Config.load_task_categories
+  rescue Config::CategoriesFileNotFoundError
+    raise StandardError, 'Categories not configured yet.'
   end
 
   def self.report_pending_to_minutedock
