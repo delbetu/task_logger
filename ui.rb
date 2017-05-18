@@ -70,12 +70,11 @@ def manage_activities
 end
 
 def log_activity
-  project_id = ask_for_project
-  project = EntryLogger.list_projects[project_id]
+  project = ask_for_project
   duration = ask_for_duration
   description = ask_for_description
-  category_id = ask_for_category
-  category = EntryLogger.list_categories[category_id]
+  category = ask_for_category
+
   EntryLogger.create_entry(
     date: Date.today,
     project: project['project'],
@@ -88,6 +87,21 @@ def log_activity
 end
 
 def ask_for_project
+  project = { 'project' => nil, 'minutedock_id' => nil }
+
+  begin
+    projects = EntryLogger.list_projects
+    puts 'projects is empty' if projects.empty?
+    project_id = ask_for_project_loop
+    project = projects[project_id]
+  rescue StandardError => e
+    puts e.message
+  end
+
+  project
+end
+
+def ask_for_project_loop
   loop do
     projects = EntryLogger.list_projects
     projects_to_select = projects.keys
@@ -131,6 +145,20 @@ def ask_for_description
 end
 
 def ask_for_category
+  category = { 'category' => nil, 'minutedock_id' => nil }
+
+  begin
+    categories = EntryLogger.list_categories
+    category_id = ask_for_category_loop
+    category = categories[category_id]
+  rescue StandardError => e
+    puts e.message
+  end
+
+  category
+end
+
+def ask_for_category_loop
   loop do
     categories = EntryLogger.list_categories
     categories_to_select = categories.keys
