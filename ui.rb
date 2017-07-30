@@ -31,7 +31,7 @@ def show_reports
     when 0
       break
     when 1
-      configure_or_report_to_minutedock
+      report_to_minutedock
     when 2
       configure_or_report_to_email
     else
@@ -44,12 +44,25 @@ def configure_or_report_to_email
   puts 'Not implemented yet'
 end
 
-def configure_or_report_to_minutedock
-  if EntryLogger.minutedock_configured?
-    report_to_minutedock
-  else
-    configure_minutedock
+def report_to_minutedock
+  begin
+    EntryLogger.report_pending_to_minutedock
+    puts 'No pending entries to report'
+  rescue MinuteDock::NoCredentialsError
+    begin
+      aspi_key = ask_for_minutedock_credentials
+      EntryLogger.setup_minutedock(api_key)
+      EntryLogger.import_projects_from_minutedock
+      EntryLogger.import_categories_from_minutedock
+    rescue MinuteDock::InvalidCredentialsError
+      puts 'API key seems to be invalid, try again'
+    end
   end
+end
+
+def ask_for_minutedock_credentials
+  puts 'Paste your api key from minutedock profile'
+  gets.chomp
 end
 
 def manage_activities
@@ -208,21 +221,6 @@ def remove_activity
     end
   end
   puts 'not implemented yet'
-end
-
-def report_to_minutedock
-  EntryLogger.report_pending_to_minutedock
-  puts 'No pending entries to report'
-end
-
-def configure_minutedock
-  puts 'Paste your api key from minutedock profile'
-  api_key = gets.chomp
-  EntryLogger.setup_minutedock(api_key)
-  EntryLogger.import_projects_from_minutedock
-  EntryLogger.import_categories_from_minutedock
-rescue MinuteDock::InvalidCredentialsError
-  puts 'API key seems to be invalid, try again'
 end
 
 # Responsible for formatting and printing activities

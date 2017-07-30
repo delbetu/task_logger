@@ -32,6 +32,8 @@ class EntryLogger
   end
 
   def self.report_pending_to_minutedock
+    MinuteDock::Proxy.valid_credentials?
+
     pending_entries = Storage::Entry.list_pending(:minutedock)
     pending_entries.each do |entry|
       MinuteDock::Proxy.report_entry(entry)
@@ -62,12 +64,6 @@ class EntryLogger
     user_id = MinuteDock::Proxy.fetch_user_id(api_key)
     MinuteDock::Config
       .store_credentials('api_key' => api_key, 'user_id' => user_id)
-  end
-
-  def self.minutedock_configured?
-    MinuteDock::Proxy.valid_credentials?
-  rescue MinuteDock::NoCredentialsError
-    return false
   end
 
   def self.import_categories_from_minutedock

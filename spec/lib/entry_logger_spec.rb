@@ -155,10 +155,12 @@ describe EntryLogger do
           class_double('MinuteDock::Proxy').as_stubbed_const
         allow(minutedock_proxy_mock).to receive(:report_entry)
           .with(non_reported_entry)
+        allow(minutedock_proxy_mock).to receive(:valid_credentials?)
         minutedock_proxy_mock
       end
 
-      it 'marks entry as reported and reports to minutedock' do
+      # TODO: [Smell] Too much mocking here, is it doing to many things ?
+      it 'marks entry as reported, validates credentials and reports to minutedock' do
         EntryLogger.report_pending_to_minutedock
 
         expect(entry_storage_mock).to have_received(:list_pending)
@@ -167,27 +169,10 @@ describe EntryLogger do
           .with(non_reported_entry, minutedock_reported: true)
         expect(minutedock_proxy_mock).to have_received(:report_entry)
           .with(non_reported_entry)
+        expect(minutedock_proxy_mock).to have_received(:valid_credentials?)
       end
     end
     it 'manage exception when minutedock service fails'
-  end
-
-  describe '#minutedock_configured?' do
-    it 'calls to minutedock configuration' do
-      proxy =
-        class_double('MinuteDock::Proxy', valid_credentials?: true)
-        .as_stubbed_const
-      EntryLogger.minutedock_configured?
-      expect(proxy).to have_received(:valid_credentials?)
-    end
-
-    it 'returns false when minutedock raise error' do
-      proxy = class_double('MinuteDock::Proxy').as_stubbed_const
-      allow(proxy).to receive(:valid_credentials?)
-        .and_raise(MinuteDock::NoCredentialsError)
-      result = EntryLogger.minutedock_configured?
-      expect(result).to be_falsy
-    end
   end
 
   describe '#setup_minutedock' do
