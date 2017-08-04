@@ -33,14 +33,14 @@ def show_reports
     when 1
       report_to_minutedock
     when 2
-      configure_or_report_to_email
+      report_by_email
     else
       puts 'Not implemented yet'
     end
   end
 end
 
-def configure_or_report_to_email
+def report_by_email
   puts 'Not implemented yet'
 end
 
