@@ -33,6 +33,7 @@ Those lists are loaded from the `proyects.yml` and `categories.yml`.
 
 Copy samples and edit them in the way that better fits your job.
 ```bash
+mkdir db
 cp config/projects.yml.example config/projects.yml
 cp config/categories.yml.example config/task_categories.yml
 ```
@@ -52,7 +53,7 @@ Edit this file and paste your credentials.
 
 Run
 ```bash
-ruby ui
+ruby ui.rb
 ```
 and fill up the questions.
 

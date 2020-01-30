@@ -50,7 +50,7 @@ def report_to_minutedock
     puts 'No pending entries to report'
   rescue MinuteDock::NoCredentialsError
     begin
-      aspi_key = ask_for_minutedock_credentials
+      api_key = ask_for_minutedock_credentials
       EntryLogger.setup_minutedock(api_key)
       EntryLogger.import_projects_from_minutedock
       EntryLogger.import_categories_from_minutedock
