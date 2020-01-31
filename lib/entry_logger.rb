@@ -3,7 +3,7 @@ require_relative 'entry_validator'
 require_relative 'minutedock/errors'
 require_relative 'minutedock/proxy'
 require_relative 'storage/entry'
-require_relative 'config'
+require_relative 'storage/config'
 
 class EntryLogger
   def self.create_entry(params)
