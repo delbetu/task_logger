@@ -4,10 +4,23 @@
 # Task logger
 
 Command line tool for logging your daily tasks.
+The main two features that it offers are:
+* User wants to log an activity (i.e. Spent 1 hour preparing the sprint planning meeting).
+* User wnats to see all the activities that he has logged today.
+* User wants to remove some existing activities because we introduced a wrong number of hours.
+* At the end of the day user wants to report these activities to [minutedock](https://minutedock.com/) service.
 
-Tasks belongs to a project and can be categorized.
+![](task-logger.gif)
 
-This tool can integrate with external services such us [minutedock](https://minutedock.com/).
+## The Model
+To support these functional behavior I decided to model using value objects:
+
+`EntryValue`  --> `Project`
+   |------------> `Category`
+
+Each EntryValue represent a time spent on some Task.
+The task is represented by the EntryValue description.
+Project and Categories are preconfigured read-only lists, that you can find under `config/` directory.
 
 ## Installation
 
@@ -57,13 +70,20 @@ Run
 ```
 and answer the questions.
 
-## Code sample
+## Development Process
 
-Since this code is meant to be a show case I encourage reader to follow the commits in order.
+This project was developed using Outside-In TDD.
+Every commit is a baby step easy to understand.
 
-This project was developed using TDD. Every commit is a baby step easy to understand.
+## Architecture decisions
 
 The pieces of code are divided on **UI**, **Interactor** and **IO-Objects**.
+
+UI -> Interactor -> IO-Object (MinutedockProxy, FileStorage)
+
+The application is composed of these object-stereotypes, each of them obeys a different purpose.
+
+Interactors offer functionality to UI and split the process into a set of tasks
 
 **UI**
   - Manage user data flowing in and out of the system.
@@ -81,6 +101,6 @@ The pieces of code are divided on **UI**, **Interactor** and **IO-Objects**.
 This was build using TDD.
 First thinking of how UI would interact with user and then deciding what functions the Interactor object should provide.
 Then start proggramming the outer TDD loop over the interactor stubbing out IO-objects.
-After that the interface for the IO-object was revealed so the inner TDD loop starts.
+After that, the interface for the IO-object is revealed so the inner TDD loop over the IO-object starts.
 
 ## Feel free to comment
