@@ -3,6 +3,7 @@ require_relative 'lib/entry_logger'
 require 'byebug'
 
 def main
+  clear_screen
   loop do
     puts '1) - Activities'
     puts '2) - Reports'
@@ -19,6 +20,10 @@ def main
       puts 'Not implemented yet'
     end
   end
+end
+
+def clear_screen
+  system('clear') || system('cls')
 end
 
 def show_reports
@@ -231,6 +236,8 @@ class ActivitiesPrinter
   DURATION_LENGTH = 5
 
   def self.print(entries)
+    clear_screen
+
     print_activities_header
     entries.each_with_index do |entry, index|
       print_formatted_activity(index + 1, entry)
