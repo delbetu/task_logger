@@ -266,5 +266,3 @@ class ActivitiesPrinter
     text[0..(num - 1)]
   end
 end
-
-main

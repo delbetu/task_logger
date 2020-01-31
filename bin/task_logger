@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Configure the load path so all dependencies in your Gemfile can be required
+require 'rubygems'
+require 'bundler/setup'
+
+require_relative '../ui.rb'
+
+main

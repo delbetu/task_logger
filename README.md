@@ -53,9 +53,9 @@ Edit this file and paste your credentials.
 
 Run
 ```bash
-ruby ui.rb
+./bin/task_logger
 ```
-and fill up the questions.
+and answer the questions.
 
 ## Code sample
 
