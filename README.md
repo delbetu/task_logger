@@ -15,7 +15,7 @@ The main two features that it offers are:
 ## The Model
 To support these functional behavior I decided to model using value objects:
 
-`EntryValue`  --> `Project`
+`EntryValue`  --> `Project`  
    |------------> `Category`
 
 Each EntryValue represent a time spent on some Task.
